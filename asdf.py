@@ -78,14 +78,14 @@ def mine():
     response = {
         'message': "New Block Forged",
         'index': block['index'],
-        'transaction': block['transaction'],
+        'transactions': block['transactions'],
         'proof': block['proof'],
         'previous_hash': block['previous_hash'],
     }
     return jsonify(response), 200
 
 @app.route('/transactions/new', methods = ['POST'])
-def new_transactions():
+def new_transaction():
     values = request.get_json()
     required =  ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
@@ -105,4 +105,4 @@ def full_chain():
     return jsonify(response), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=500)
+    app.run(host='0.0.0.0', port=5000)
